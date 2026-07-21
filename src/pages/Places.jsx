@@ -1,5 +1,18 @@
+import { motion } from 'framer-motion';
 import HeroSection from '../components/HeroSection';
 import Card from '../components/Card';
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+};
 
 const destinations = [
   {
@@ -85,20 +98,27 @@ const Places = () => {
       />
 
       <section className="section container">
-        <div className="grid grid-cols-2">
+        <motion.div 
+          className="grid grid-cols-2"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {destinations.map((dest) => (
-            <Card 
-              key={dest.id}
-              image={dest.image}
-              title={dest.title}
-              location={dest.location}
-              highlight={dest.highlight}
-              description={dest.description}
-              bestSeason={dest.bestSeason}
-              minimumStay={dest.minimumStay}
-            />
+            <motion.div key={dest.id} variants={itemVariants}>
+              <Card 
+                image={dest.image}
+                title={dest.title}
+                location={dest.location}
+                highlight={dest.highlight}
+                description={dest.description}
+                bestSeason={dest.bestSeason}
+                minimumStay={dest.minimumStay}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
     </>
   );

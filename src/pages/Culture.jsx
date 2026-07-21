@@ -1,4 +1,10 @@
+import { motion } from 'framer-motion';
 import HeroSection from '../components/HeroSection';
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+};
 
 const Culture = () => {
   return (
@@ -11,7 +17,14 @@ const Culture = () => {
       />
 
       <section className="section container">
-        <div className="grid grid-cols-2" style={{ alignItems: 'center' }}>
+        <motion.div 
+          className="grid grid-cols-2" 
+          style={{ alignItems: 'center' }}
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           <div>
             <h2 style={{ color: 'var(--secondary)' }}>Monasteries & Monks</h2>
             <p style={{ fontSize: '1.1rem', marginBottom: 'var(--spacing-md)' }}>
@@ -24,9 +37,16 @@ const Culture = () => {
           <div>
             <img src="/images/culture/monasteries.jpg" alt="Monks in Sikkim" style={{ borderRadius: 'var(--radius-lg)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
           </div>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-2" style={{ alignItems: 'center', marginTop: 'var(--spacing-xl)' }}>
+        <motion.div 
+          className="grid grid-cols-2" 
+          style={{ alignItems: 'center', marginTop: 'var(--spacing-xl)' }}
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           <div style={{ order: 2 }}>
             <h2 style={{ color: 'var(--secondary)' }}>Festivals & Dance</h2>
             <p style={{ fontSize: '1.1rem', marginBottom: 'var(--spacing-md)' }}>
@@ -39,7 +59,7 @@ const Culture = () => {
           <div style={{ order: 1 }}>
             <img src="/images/culture/mask-dance.jpg" alt="Traditional Mask Dance" style={{ borderRadius: 'var(--radius-lg)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
           </div>
-        </div>
+        </motion.div>
       </section>
     </>
   );

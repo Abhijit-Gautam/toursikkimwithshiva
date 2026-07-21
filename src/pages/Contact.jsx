@@ -1,4 +1,17 @@
+import { motion } from 'framer-motion';
 import HeroSection from '../components/HeroSection';
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+};
 
 const Contact = () => {
   return (
@@ -11,9 +24,16 @@ const Contact = () => {
       />
 
       <section className="section container">
-        <div className="grid grid-cols-2" style={{ gap: 'var(--spacing-xl)' }}>
+        <motion.div 
+          className="grid grid-cols-2" 
+          style={{ gap: 'var(--spacing-xl)' }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           
-          <div>
+          <motion.div variants={itemVariants}>
             <h2 style={{ color: 'var(--primary)', marginBottom: 'var(--spacing-sm)' }}>Send us a Message</h2>
             <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--spacing-lg)' }}>
               Fill out the form below and we will get back to you within 24 hours.
@@ -47,9 +67,9 @@ const Contact = () => {
 
               <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start', marginTop: '0.5rem' }}>Send Inquiry</button>
             </form>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div variants={itemVariants}>
             <h2 style={{ color: 'var(--primary)', marginBottom: 'var(--spacing-sm)' }}>Our Office</h2>
             <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--spacing-lg)' }}>
               Visit us for a cup of local Temi tea and a chat about your travel plans.
@@ -73,9 +93,9 @@ const Contact = () => {
                 Interactive Map Placeholder
               </span>
             </div>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
       </section>
     </>
   );

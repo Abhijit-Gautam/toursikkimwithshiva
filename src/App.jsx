@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Places from './pages/Places';
 import Culture from './pages/Culture';
@@ -10,8 +11,10 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="places" element={<Places />} />
         <Route path="culture" element={<Culture />} />
@@ -20,7 +23,8 @@ function App() {
         <Route path="travel-info" element={<TravelInfo />} />
         <Route path="contact" element={<Contact />} />
       </Route>
-    </Routes>
+      </Routes>
+    </>
   );
 }
 

@@ -1,4 +1,17 @@
+import { motion } from 'framer-motion';
 import HeroSection from '../components/HeroSection';
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+};
 
 const TravelInfo = () => {
   return (
@@ -11,9 +24,16 @@ const TravelInfo = () => {
       />
 
       <section className="section container">
-        <div className="grid grid-cols-2" style={{ gap: 'var(--spacing-xl)' }}>
+        <motion.div 
+          className="grid grid-cols-2" 
+          style={{ gap: 'var(--spacing-xl)' }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 style={{ color: 'var(--secondary)' }}>Permits & Regulations</h3>
             <p style={{ marginBottom: 'var(--spacing-md)' }}>
               Sikkim shares borders with three countries, making it a sensitive border state. Certain permits are required for entry and specific regions.
@@ -32,9 +52,9 @@ const TravelInfo = () => {
               <li style={{ marginBottom: '0.5rem' }}><strong>Autumn (Sept - Nov):</strong> Crisp air, fantastic views of the snow peaks, and major festivals.</li>
               <li style={{ marginBottom: '0.5rem' }}><strong>Winter (Dec - Feb):</strong> Best for experiencing snow in higher altitudes. Pack heavy woolens!</li>
             </ul>
-          </div>
+          </motion.div>
 
-          <div style={{ backgroundColor: 'var(--surface)', padding: 'var(--spacing-lg)', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(47, 107, 79, 0.15)' }}>
+          <motion.div variants={itemVariants} style={{ backgroundColor: 'var(--surface)', padding: 'var(--spacing-lg)', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(47, 107, 79, 0.15)' }}>
             <h3 style={{ color: 'var(--primary)' }}>Packing Checklist</h3>
             <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: 'var(--spacing-md)' }}>
               Mountain weather is unpredictable. Layering is the key to comfort.
@@ -66,9 +86,9 @@ const TravelInfo = () => {
                 <label htmlFor="pack-6">Multiple photocopies of ID and passport size photos (for permits)</label>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
       </section>
     </>
   );
