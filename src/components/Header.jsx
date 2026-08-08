@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { Phone, Menu, X, Moon, Sun } from 'lucide-react';
+import { Phone, Menu, X, Moon, Sun, Sparkles } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { flushSync } from 'react-dom';
@@ -14,6 +14,9 @@ const getInitialTheme = () => {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState(getInitialTheme);
+  const [glassMode, setGlassMode] = useState(() => {
+    return localStorage.getItem('glassMode') === 'true';
+  });
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -23,49 +26,16 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute('data-glass', 'true');
+    localStorage.setItem('theme', 'dark');
+    localStorage.setItem('glassMode', 'true');
+  }, []);
 
-  const toggleTheme = (e) => {
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
-
-    if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setTheme(nextTheme);
-      return;
-    }
-
-    const x = e.clientX;
-    const y = e.clientY;
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
-
-    const transition = document.startViewTransition(() => {
-      flushSync(() => {
-        setTheme(nextTheme);
-      });
-      document.documentElement.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('theme', nextTheme);
-    });
-
-    transition.ready.then(() => {
-      document.documentElement.animate(
-        {
-          clipPath: [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${endRadius}px at ${x}px ${y}px)`,
-          ],
-        },
-        {
-          duration: 500,
-          easing: 'ease-out',
-          pseudoElement: '::view-transition-new(root)',
-        }
-      );
-    });
-  };
+  /* Toggle handlers preserved below
+  const toggleGlassMode = () => setGlassMode((prev) => !prev);
+  const toggleTheme = (e) => { ... };
+  */
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -119,9 +89,22 @@ const Header = () => {
             <span className="phone-text">+91 9775228928</span>
           </a>
           
+          {/* Glass Mode Toggle - Commented out per request
+          <button 
+            className={`glass-toggle ${glassMode ? 'active' : ''}`} 
+            onClick={toggleGlassMode} 
+            aria-label="Toggle Glass Mode"
+            title={glassMode ? "Glass Mode: ON" : "Glass Mode: OFF"}
+          >
+            <Sparkles size={19} />
+          </button>
+          */}
+
+          {/* Dark Mode Switch Toggle - Commented out per request
           <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </button>
+          */}
 
           <button className="mobile-menu-btn" onClick={toggleMenu} aria-label="Toggle menu">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}

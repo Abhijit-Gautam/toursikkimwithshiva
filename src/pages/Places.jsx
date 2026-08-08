@@ -94,7 +94,7 @@ const Places = () => {
         image="/images/heroes/places-hero.jpg"
         title="Iconic Destinations"
         subtitle="Explore the breathtaking jewels of Sikkim, from vibrant hill stations to pristine alpine sanctuaries."
-        height="50vh"
+        height="75vh"
       />
 
       <section className="section container">

@@ -20,7 +20,7 @@ const TravelInfo = () => {
         image="/images/heroes/travel-info-hero.jpg"
         title="Essential Travel Info"
         subtitle="Everything you need to know to plan a seamless journey to the Himalayas."
-        height="50vh"
+        height="75vh"
       />
 
       <section className="section container">

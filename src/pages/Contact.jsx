@@ -20,7 +20,7 @@ const Contact = () => {
         image="/images/heroes/contact-hero.jpg"
         title="Get In Touch"
         subtitle="Ready to explore Sikkim? Our local experts are here to craft your perfect itinerary."
-        height="40vh"
+        height="75vh"
       />
 
       <section className="section container">

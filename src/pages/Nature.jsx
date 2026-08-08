@@ -21,7 +21,7 @@ const Nature = () => {
         image="/images/heroes/nature-hero.jpg"
         title="Untamed Wilderness"
         subtitle="From subtropical forests to high-altitude deserts, discover nature in its purest form."
-        height="50vh"
+        height="75vh"
       />
 
       <section className="section container">

@@ -4,13 +4,13 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer dark-theme-footer">
       <div className="container grid footer-grid">
         <div className="footer-brand">
           <h2 className="brand-name">
-            <span style={{ color: 'var(--primary)' }}>Tour Sikkim </span>
-            <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>With </span>
-            <span style={{ color: 'var(--accent)' }}>Shiva</span>
+            <span className="footer-primary-text">Tour Sikkim </span>
+            <span className="footer-muted-text">With </span>
+            <span className="footer-accent-text">Shiva</span>
           </h2>
           <p>Your trusted local partner for authentic and unforgettable travel experiences in the heart of Sikkim.</p>
           <div className="social-links">

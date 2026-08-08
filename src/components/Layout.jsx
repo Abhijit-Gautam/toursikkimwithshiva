@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main style={{ minHeight: 'calc(100vh - 200px)' }}>
+      <main style={{ minHeight: 'calc(100vh - 200px)', paddingTop: '65px' }}>
         <Outlet />
       </main>
       <Footer />

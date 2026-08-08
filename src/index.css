@@ -1,14 +1,16 @@
 :root {
   /* Light Mode Palette */
-  --bg: #EAF2F3;
-  --surface: #DCE9E3;
+  --bg: #F8FAF9;
+  --bg-gradient: linear-gradient(135deg, #F2F6F4 0%, #F8FAF9 50%, #EEF2F0 100%);
+  --surface: rgba(255, 255, 255, 0.7);
+  --border-glass: rgba(255, 255, 255, 0.8);
   --primary: #2F6B4F;
   --secondary: #3E7CB1;
   --accent: #D9A441;
   --text: #22322A;
   --text-muted: #5C6B63;
-  --text-on-image: #F5FAF8;
-  --overlay: rgba(16, 32, 26, 0.55);
+  --text-on-image: #FFFFFF;
+  --overlay: rgba(0, 0, 0, 0.22);
 
   /* Typography */
   --font-display: 'Playfair Display', serif;
@@ -35,15 +37,17 @@
 
 html[data-theme='dark'] {
   /* Dark Mode Palette */
-  --bg: #10201A;
-  --surface: #182D23;
+  --bg: #0F1714;
+  --bg-gradient: linear-gradient(135deg, #0A120E 0%, #0F1714 50%, #141F1B 100%);
+  --surface: rgba(15, 26, 21, 0.65);
+  --border-glass: rgba(255, 255, 255, 0.15);
   --primary: #5FBE8F;
   --secondary: #7FB8E0;
   --accent: #D9A441;
   --text: #EAF3EC;
   --text-muted: #9FB3A8;
-  --text-on-image: #F5FAF8;
-  --overlay: rgba(0, 0, 0, 0.45);
+  --text-on-image: #FFFFFF;
+  --overlay: rgba(0, 0, 0, 0.35);
 }
 
 *,
@@ -57,7 +61,7 @@ html[data-theme='dark'] {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg);
+  background: transparent;
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -209,4 +213,35 @@ html[data-theme='dark'] .btn-primary {
   .container {
     padding: 0 var(--spacing-lg);
   }
+}
+
+/* Glass Mode System */
+html[data-glass='true'] {
+  --surface: rgba(255, 255, 255, 0.28);
+  --border-glass: rgba(255, 255, 255, 0.85);
+}
+
+html[data-theme='dark'][data-glass='true'] {
+  --surface: rgba(12, 22, 17, 0.38);
+  --border-glass: rgba(255, 255, 255, 0.25);
+}
+
+.card,
+.footer,
+.glass-panel,
+section,
+div[style*="backgroundColor"] {
+  position: relative;
+  z-index: 2;
+}
+
+html[data-glass='true'] .card,
+html[data-glass='true'] .glass-panel,
+html[data-glass='true'] section[style*="backgroundColor"],
+html[data-glass='true'] div[style*="backgroundColor"] {
+  background-color: var(--surface) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--border-glass) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
 }

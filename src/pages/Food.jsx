@@ -21,7 +21,7 @@ const Food = () => {
         image="/images/heroes/food-hero.jpg"
         title="Himalayan Flavors"
         subtitle="Taste the authentic blend of Tibetan, Nepalese, and indigenous culinary traditions."
-        height="50vh"
+        height="75vh"
       />
 
       <section className="section container">
