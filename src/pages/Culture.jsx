@@ -7,8 +7,16 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
 };
 
+const getImagePath = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${cleanPath}`;
+};
+
 const ImageBox = ({ src, alt }) => {
   const [error, setError] = useState(false);
+  const imageUrl = getImagePath(src);
   if (error) {
     return (
       <div style={{ width: '100%', height: '260px', backgroundColor: 'var(--surface)', borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed var(--secondary)', color: 'var(--text-muted)' }}>
@@ -18,7 +26,7 @@ const ImageBox = ({ src, alt }) => {
   }
   return (
     <img 
-      src={src} 
+      src={imageUrl} 
       alt={alt} 
       onError={() => setError(true)}
       style={{ width: '100%', borderRadius: 'var(--radius-lg)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', objectFit: 'cover' }} 

@@ -1,11 +1,19 @@
 import { MapPin, Calendar, Clock } from 'lucide-react';
 import './Card.css';
 
+const getImagePath = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${cleanPath}`;
+};
+
 const Card = ({ image, title, location, description, highlight, bestSeason, minimumStay }) => {
+  const imageUrl = getImagePath(image);
   return (
     <div className="card">
       <div className="card-image-wrapper">
-        <img src={image} alt={title} className="card-image" />
+        {imageUrl ? <img src={imageUrl} alt={title} className="card-image" /> : null}
         {highlight && <div className="card-badge">{highlight}</div>}
       </div>
       <div className="card-content">

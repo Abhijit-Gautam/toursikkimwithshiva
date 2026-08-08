@@ -1,13 +1,21 @@
 import { motion } from 'framer-motion';
 import './HeroSection.css';
 
+const getImagePath = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${cleanPath}`;
+};
+
 const HeroSection = ({ image, title, subtitle, height = '75vh', children }) => {
+  const imageUrl = getImagePath(image);
   return (
     <div className="hero-wrapper" style={{ minHeight: height }}>
       <div 
         className="hero-bg" 
         style={{ 
-          backgroundImage: `linear-gradient(var(--overlay), var(--overlay)), url(${image})` 
+          backgroundImage: `linear-gradient(var(--overlay), var(--overlay)), url("${imageUrl}")` 
         }} 
       />
       <div className="hero-content-layer">
